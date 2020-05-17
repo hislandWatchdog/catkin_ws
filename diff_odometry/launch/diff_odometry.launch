@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+
+<launch>
+    <node pkg="diff_odometry" type="diff_odometry_node" name="diff_odometry" output="screen"/>
+</launch>
