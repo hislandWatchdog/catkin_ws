@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="watchdog">
+
+  <gazebo reference = "base_link">
+    <material> Gazebo/Black </material>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <!-- Plugin update rate in Hz -->
+      <updateRate>20</updateRate>
+      <!-- Name of left joint, defaults to `left_joint` -->
+      <leftJoint>LWheel_Joint</leftJoint>
+      <!-- Name of right joint, defaults to `right_joint` -->
+      <rightJoint>RWheel_Joint</rightJoint>
+      <!-- The distance from the center of one wheel to the other, in meters, defaults to 0.34 m -->
+      <wheelSeparation>0.222</wheelSeparation>
+      <!-- Diameter of the wheels, in meters, defaults to 0.15 m -->
+      <wheelDiameter>0.101</wheelDiameter>
+      <!-- Wheel acceleration, in rad/s^2, defaults to 0.0 rad/s^2 -->
+      <wheelAcceleration>1.0</wheelAcceleration>
+      <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
+      <wheelTorque>5</wheelTorque>
+      <!-- Topic to receive geometry_msgs/Twist message commands, defaults to `cmd_vel` -->
+      <commandTopic>cmd_vel</commandTopic>
+      <!-- Topic to publish nav_msgs/Odometry messages, defaults to `odom` -->
+      <odometryTopic>odom</odometryTopic>
+      <!-- Odometry frame, defaults to `odom` -->
+      <odometryFrame>odom</odometryFrame>
+      <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
+      <odometrySource>1</odometrySource>
+      <!-- Set to true to publish transforms for the wheel links, defaults to false -->
+      <publishWheelTF>true</publishWheelTF>
+      <!-- Set to true to publish transforms for the odometry, defaults to true -->
+      <publishOdom>true</publishOdom>
+      <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
+      <publishWheelJointState>true</publishWheelJointState>
+      <!-- Set to true to swap right and left wheels, defaults to true -->
+      <legacyMode>false</legacyMode>
+    </plugin>
+  </gazebo>
+
+ <!-- hokuyo -->
+  <gazebo reference="Lidar_Link">
+    <sensor type="ray" name="head_hokuyo_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>7.69</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.1416</min_angle>
+            <max_angle>3.1416</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.15</min>
+          <max>12.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>Lidar_Link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
+  <!-- Creation of the base link-->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.131936538447687 1.10553634063114E-06 0.0291518597123196" rpy="0 0 0" />
+      <mass value="0.272802334634605" />
+      <inertia
+        ixx="0.000959804973774207"
+        ixy="-2.50333273274086E-08"
+        ixz="-4.350901863945E-05"
+        iyy="0.0015886682926646"
+        iyz="-5.05968513283588E-09"
+        izz="0.0023886132736546" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/base_link.STL" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.372549019607843 0.372549019607843 0.372549019607843 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+
+  <!-- Creation of the right motor link-->
+  </link>
+  <link name="RMotor_Link">
+    <inertial>
+      <origin xyz="-0.00012589 -1.0678E-06 -0.0080017" rpy="0 0 0" />
+      <mass value="0.059905" />
+      <inertia
+        ixx="2.6079E-05"
+        ixy="-4.4446E-10"
+        ixz="2.7414E-07"
+        iyy="2.6131E-05"
+        iyz="2.8465E-09"
+        izz="8.8604E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/RMotor_Link.STL" />
+      </geometry>
+      <material name="gray">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/RMotor_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Creation of the right motor joint-->
+  <joint name="RMotor_Joint" type="fixed">
+    <origin xyz="0.00306359051227961 0.0585 0.00629399818662646" rpy="-1.5707963267949 -1.11780647710814 0" />
+    <parent link="base_link" />
+    <child link="RMotor_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <!-- Creation of the right motor link-->
+  <link name="RWheel_Link">
+    <inertial>
+      <origin xyz="3.6475E-06 4.8973E-07 0.022928" rpy="0 0 0" />
+      <mass value="0.15938" />
+      <inertia
+        ixx="9.5251E-05"
+        ixy="5.1179E-10"
+        ixz="4.5036E-09"
+        iyy="9.5247E-05"
+        iyz="6.0466E-10"
+        izz="0.00017092" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/RWheel_Link.STL" />
+      </geometry>
+      <material name="blue">
+        <color rgba="0.99216 0.99608 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/RWheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Creation of the joint of the right wheel-->
+  <joint name="RWheel_Joint" type="continuous">
+    <origin xyz="-0.00700000000000006 0 0.0305" rpy="0 0 -2.02378617648165" />
+    <parent link="RMotor_Link" />
+    <child link="RWheel_Link" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- Creation of the left motor link-->
+  <link name="LMotor_Link">
+    <inertial>
+      <origin xyz="1.06776487074356E-06 -0.00012589011706593 -0.00800171182746316" rpy="0 0 0" />
+      <mass value="0.0599050546017115" />
+      <inertia
+        ixx="2.61310804093162E-05"
+        ixy="4.44461472402403E-10"
+        ixz="-2.84653031957168E-09"
+        iyy="2.60791206087044E-05"
+        iyz="2.74140992935313E-07"
+        izz="8.86042100272929E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/LMotor_Link.STL" />
+      </geometry>
+      <material name="gray">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/LMotor_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Creation of the left motor joint-->
+  <joint name="LMotor_Joint" type="fixed">
+    <origin xyz="0.00306359051226426 -0.0585 0.00629399818661908" rpy="1.5707963267949 0.452989849686705 0" />
+    <parent link="base_link" />
+    <child link="LMotor_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <!-- Creation of the left motor link-->
+  <link name="LWheel_Link">
+    <inertial>
+      <origin xyz="3.5742488281032E-06 -8.76760330448256E-07 0.0229277158892154" rpy="0 0 0" />
+      <mass value="0.15937870113268" />
+      <inertia
+        ixx="9.52505224252278E-05"
+        ixy="-3.32221854470471E-10"
+        ixz="4.41313990648216E-09"
+        iyy="9.5247452224434E-05"
+        iyz="-1.08255118295134E-09"
+        izz="0.000170917219653993" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/LWheel_Link.STL" />
+      </geometry>
+      <material name="blue">
+        <color rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/LWheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Creation of the left wheel joint-->
+  <joint name="LWheel_Joint" type="continuous">
+    <origin xyz="0 -0.00700000000000001 0.0305" rpy="0 0 0.452989849686705" />
+    <parent link="LMotor_Link" />
+    <child link="LWheel_Link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <!-- Creation of the battery link-->
+  <link name="Battery_Link">
+    <inertial>
+      <origin xyz="-7.95303784825035E-07 2.27409651936544E-06 0.0159926769522142" rpy="0 0 0" />
+      <mass value="0.231124740264454" />
+      <inertia
+        ixx="6.95417445265297E-05"
+        ixy="-1.09669422228775E-08"
+        ixz="2.94290313071721E-09"
+        iyy="0.000406525755701883"
+        iyz="-8.38336036105375E-09"
+        izz="0.000437193560344446" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/Battery_Link.STL" />
+      </geometry>
+      <material name="blue">
+        <color rgba="0.992156862745098 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/Battery_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Creation of battery joint-->
+  <joint name="Battery_Joint" type="fixed">
+    <origin xyz="0.116500000000015 -0.04 0.0135000000000076" rpy="0 0 3.14159265358979" />
+    <parent link="base_link" />
+    <child link="Battery_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <!-- Creation of the motoshield link-->
+  <link name="MotoShield_Link">
+    <inertial>
+      <origin xyz="-0.000906663253647078 1.81987746071532E-05 0.00324859919524972" rpy="0 0 0" />
+      <mass value="0.00965020666023458" />
+      <inertia
+        ixx="1.72879845391036E-06"
+        ixy="2.95059873571204E-08"
+        ixz="-2.04998086154079E-08"
+        iyy="3.29786098239132E-06"
+        iyz="-3.49996753867047E-10"
+        izz="4.80689992233693E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/MotoShield_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/MotoShield_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Creation of the motoshield joint-->
+  <joint name="MotoShield_Joint" type="fixed">
+    <origin xyz="0.087850000000015 0.04715 0.0135000000000076" rpy="0 0 3.14159265358979" />
+    <parent link="base_link" />
+    <child link="MotoShield_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <!-- Creation of the rasp link-->
+  <link name="Rasp_Link">
+    <inertial>
+      <origin xyz="0.0597184603825512 0.0372848625782793 0.000466138543304295" rpy="0 0 0" />
+      <mass value="0.0685167860703749" />
+      <inertia
+        ixx="2.53790376425816E-05"
+        ixy="7.71182132417783E-09"
+        ixz="7.17598630634175E-11"
+        iyy="4.93580215384763E-05"
+        iyz="2.92552324423039E-10"
+        izz="7.40592965310709E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/Rasp_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0.670588235294118 0.231372549019608 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/Rasp_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Creation of rasp joint-->
+  <joint name="Rasp_Joint" type="fixed">
+    <origin xyz="0.215000000000015 0.05 0.0700000000000076" rpy="0 0 3.14159265358979" />
+    <parent link="base_link" />
+    <child link="Rasp_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <!-- Creation of the lidar link-->
+  <link name="Lidar_Link">
+    <inertial>
+      <origin xyz="0.0119211686233717 -0.000829632078116571 -0.00986495283628119" rpy="0 0 0" />
+      <mass value="0.0730824721228451" />
+      <inertia
+        ixx="1.95777683483548E-05"
+        ixy="-4.513404161978E-08"
+        ixz="-4.28225037550584E-07"
+        iyy="2.41278365751439E-05"
+        iyz="1.51629263532263E-08"
+        izz="4.14181727753719E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/Lidar_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.486274509803922 0.486274509803922 0.486274509803922 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/Lidar_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Creation of the lidar joint-->
+  <joint name="Lidar_Joint" type="fixed">
+    <origin xyz="0.0245950902140598 0.000353235794243532 0.0996000000000025" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="Lidar_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <!-- Creation of the caster wheel link-->
+  <link name="FreeWheel_Link">
+    <inertial>
+      <origin xyz="0.000365289585873632 -0.000118819536407379 0.0104403397653149" rpy="0 0 0" />
+      <mass value="0.0819906643957427" />
+      <inertia
+        ixx="2.33283423261154E-05"
+        ixy="-1.8131715732486E-22"
+        ixz="-5.1578607958041E-22"
+        iyy="1.6590557819557E-05"
+        iyz="-4.28637987585813E-22"
+        izz="2.8648637026961E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/FreeWheel_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://watchdog/meshes/FreeWheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Creation of the caster wheel joint-->
+  <joint name="FreeWheel_Joint" type="fixed">
+    <origin xyz="0.205365289585889 -0.000118819536407307 -0.0227799999999924" rpy="0 0 3.14159265358979" />
+    <parent link="base_link" />
+    <child link="FreeWheel_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+</robot>
