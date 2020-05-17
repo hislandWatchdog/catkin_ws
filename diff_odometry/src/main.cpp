@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
     odom_trans.header.frame_id = "odom";
     odom_trans.child_frame_id = "base_footprint";
 
-    ros::Rate loopRate(5);  // Frequency of repetition in Hz
+    ros::Rate loopRate(100);  // Frequency of repetition in Hz
     //////////////////////////////////////////////////////////////////////////// USAGE
     initializeGlovalVariables();
 

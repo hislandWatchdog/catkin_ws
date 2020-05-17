@@ -14,9 +14,9 @@
     void spd_msgCallback_left(const std_msgs::UInt8& msg);
     void spd_msgCallback_right(const std_msgs::UInt8& msg);
 
-    const double _WHEEL_RADIUS = 0.05; // meters
+    const double _WHEEL_RADIUS = 0.0509; // meters
     const double _WHEEL_PERIMETER = 2 * 3.14159265 * _WHEEL_RADIUS;
-    const double _SEPARATION_BETWEEN_WHEELS = 0.2; // meters
+    const double _SEPARATION_BETWEEN_WHEELS = 0.225; // meters
 
     extern std_msgs::UInt8 speed_left;
     extern std_msgs::UInt8 speed_right;
@@ -29,8 +29,5 @@
     extern double vx;   // 0.0 m/s in x
     extern double vy;   // 0.0 m/s in y
     extern double vth;  // 0.0 rad/s in theta
-
-    extern double prev_left;
-    extern double prev_right;
 
 #endif
