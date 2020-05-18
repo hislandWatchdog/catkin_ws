@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<launch>
+    <node pkg="twist_to_rpm" type="twist2MotorRef" name="twist_to_rpm" output="screen"/>
+</launch>
+

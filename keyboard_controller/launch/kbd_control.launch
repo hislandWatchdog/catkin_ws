@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+
+<launch>
+    <node pkg="keyboard_controller" type="kbd_control" name="kbd_control" output="screen"/>
+</launch>
