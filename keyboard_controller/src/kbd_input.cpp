@@ -135,6 +135,12 @@ int main(int argc, char **argv)
 	    case -1:
 		//Do nothing because no key was pressed
 		break;
+	    case -23:
+		// Do nothing alt key was pressed
+		break;
+	    case 9:
+		// Do nothing tab key was pressed
+		break;
 	    case 27:
 		//ESC was pressed close program
 		msg.linear.x	= 0;
@@ -142,11 +148,13 @@ int main(int argc, char **argv)
 		vel_pub.publish(msg);
 
 		ros::shutdown();
+		break;
 	    default:
 		text_msg = "IDLE";
 		speed_lvl = 0;
 		msg.linear.x	= 0;
 		msg.angular.z	= 0;
+		std::cout << "Key: " << int(key) << std::endl;
 	}
 
 	vel_pub.publish(msg);
