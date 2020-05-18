@@ -7,6 +7,7 @@ project(keyboard_controller)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
+set(OpenCV_DIR /home/juan/opencv/opencv/build)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
