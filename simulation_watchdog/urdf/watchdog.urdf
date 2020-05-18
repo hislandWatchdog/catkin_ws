@@ -99,7 +99,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/base_link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/base_link.STL" />
       </geometry>
       <material name="black">
         <color rgba="0.372549019607843 0.372549019607843 0.372549019607843 1" />
@@ -108,7 +108,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/base_link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/base_link.STL" />
       </geometry>
     </collision>
 
@@ -129,7 +129,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/RMotor_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/RMotor_Link.STL" />
       </geometry>
       <material name="gray">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -138,7 +138,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/RMotor_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/RMotor_Link.STL" />
       </geometry>
     </collision>
   </link>
@@ -167,7 +167,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/RWheel_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/RWheel_Link.STL" />
       </geometry>
       <material name="blue">
         <color rgba="0.99216 0.99608 1 1" />
@@ -176,7 +176,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/RWheel_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/RWheel_Link.STL" />
       </geometry>
     </collision>
   </link>
@@ -205,7 +205,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/LMotor_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/LMotor_Link.STL" />
       </geometry>
       <material name="gray">
         <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
@@ -214,7 +214,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/LMotor_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/LMotor_Link.STL" />
       </geometry>
     </collision>
   </link>
@@ -243,7 +243,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/LWheel_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/LWheel_Link.STL" />
       </geometry>
       <material name="blue">
         <color rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
@@ -252,7 +252,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/LWheel_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/LWheel_Link.STL" />
       </geometry>
     </collision>
   </link>
@@ -281,7 +281,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/Battery_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/Battery_Link.STL" />
       </geometry>
       <material name="blue">
         <color rgba="0.992156862745098 1 1 1" />
@@ -290,7 +290,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/Battery_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/Battery_Link.STL" />
       </geometry>
     </collision>
   </link>
@@ -319,7 +319,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/MotoShield_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/MotoShield_Link.STL" />
       </geometry>
       <material name="">
         <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
@@ -328,7 +328,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/MotoShield_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/MotoShield_Link.STL" />
       </geometry>
     </collision>
   </link>
@@ -357,7 +357,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/Rasp_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/Rasp_Link.STL" />
       </geometry>
       <material name="">
         <color rgba="1 0.670588235294118 0.231372549019608 1" />
@@ -366,7 +366,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/Rasp_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/Rasp_Link.STL" />
       </geometry>
     </collision>
   </link>
@@ -395,7 +395,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/Lidar_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/Lidar_Link.STL" />
       </geometry>
       <material name="">
         <color rgba="0.486274509803922 0.486274509803922 0.486274509803922 1" />
@@ -404,7 +404,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/Lidar_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/Lidar_Link.STL" />
       </geometry>
     </collision>
   </link>
@@ -433,7 +433,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/FreeWheel_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/FreeWheel_Link.STL" />
       </geometry>
       <material name="">
         <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
@@ -442,7 +442,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://watchdog/meshes/FreeWheel_Link.STL" />
+        <mesh filename="package://simulation_watchdog/meshes/FreeWheel_Link.STL" />
       </geometry>
     </collision>
   </link>

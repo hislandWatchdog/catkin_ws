@@ -1,7 +1,7 @@
 <launch>
   <include
     file="$(find gazebo_ros)/launch/empty_world.launch" >
-    <arg name="world_name" value="$(find watchdog)/worlds/office.world"/>
+    <arg name="world_name" value="$(find simulation_watchdog)/worlds/office.world"/>
   </include>
   <node
     name="tf_footprint_base"
@@ -12,7 +12,7 @@
     name="spawn_model"
     pkg="gazebo_ros"
     type="spawn_model"
-    args="-file $(find watchdog)/urdf/watchdog.urdf -urdf -model watchdog"
+    args="-file $(find simulation_watchdog)/urdf/watchdog.urdf -urdf -model watchdog"
     output="screen" />
   <node
     name="fake_joint_calibration"

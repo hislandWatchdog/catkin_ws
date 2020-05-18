@@ -148,13 +148,11 @@ int main(int argc, char **argv)
 		vel_pub.publish(msg);
 
 		ros::shutdown();
-		break;
 	    default:
 		text_msg = "IDLE";
-		speed_lvl = 0;
+		speed = 0;
 		msg.linear.x	= 0;
 		msg.angular.z	= 0;
-		std::cout << "Key: " << int(key) << std::endl;
 	}
 
 	vel_pub.publish(msg);
