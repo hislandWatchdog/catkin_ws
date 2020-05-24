@@ -1,7 +1,7 @@
 <launch>
   <include
     file="$(find gazebo_ros)/launch/empty_world.launch" >
-    <arg name="world_name" value="$(find simulation_watchdog)/worlds/office.world"/>
+    <arg name="world_name" value="$(find simulation_watchdog)/worlds/JD.world"/>
   </include>
   <node
     name="tf_footprint_base"
