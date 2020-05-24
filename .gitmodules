@@ -7,3 +7,9 @@
 [submodule "pid"]
 	path = pid
 	url = https://github.com/hislandWatchdog/pid.git
+[submodule "iris_lama"]
+	path = iris_lama
+	url = https://github.com/hislandWatchdog/iris_lama.git
+[submodule "iris_lama_ros"]
+	path = iris_lama_ros
+	url = https://github.com/hislandWatchdog/iris_lama_ros.git
