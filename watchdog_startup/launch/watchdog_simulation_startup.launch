@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<launch>
+    <include file="$(find simulation_watchdog)/launch/gazebo.launch"/>
+    <include file="$(find simulation_watchdog)/launch/display.launch"/>
+</launch>

@@ -9,8 +9,8 @@
 
 #include "../include/diff_odometry/diff_odometry.h"
 
-std_msgs::UInt8 speed_left;
-std_msgs::UInt8 speed_right;
+std_msgs::Float64 speed_left;
+std_msgs::Float64 speed_right;
 //////////////////////////////////////////////////////////////////////////// ODOM SETUP
 // Positions
 double x;    // Robot starts at the origin of the "odom" coordinate frame initially
@@ -30,8 +30,8 @@ int main(int argc, char **argv) {
     ros::NodeHandle nodeHandle;
 
     ros::Publisher  publisher = nodeHandle.advertise<nav_msgs::Odometry>("odom", 1);
-    ros::Subscriber subscriber_left_spd = nodeHandle.subscribe("speed_left",1,spd_msgCallback_left);
-    ros::Subscriber subscriber_right_spd = nodeHandle.subscribe("speed_right",1,spd_msgCallback_right);
+    ros::Subscriber subscriber_left_spd = nodeHandle.subscribe("rpm_l",1,spd_msgCallback_left);
+    ros::Subscriber subscriber_right_spd = nodeHandle.subscribe("rpm_r",1,spd_msgCallback_right);
 
     tf::TransformBroadcaster odom_broadcaster;
 

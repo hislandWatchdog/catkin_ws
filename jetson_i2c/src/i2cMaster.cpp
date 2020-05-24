@@ -38,18 +38,18 @@ int main(int argc, char **argv)
     std::vector<std::string> left_motor_subs = {"duty_cycle_ref_l"};
     std::vector<std::string> left_motor_pubs = {"rpm_l"};
 
-    std::vector<std::string> right_sensors_pubs = {"ultrasonic_dist1", "ultrasonic_dist2",
-	"ultrasonic_dist3"};
-    std::vector<std::string> right_sensors_frames = {"ult_sen1","ult_sen2","ult_sen3"};
+    //std::vector<std::string> right_sensors_pubs = {"ultrasonic_dist1", "ultrasonic_dist2",
+	//"ultrasonic_dist3"};
+    //std::vector<std::string> right_sensors_frames = {"ult_sen1","ult_sen2","ult_sen3"};
 
     //Create devices
     MotorData right_motor(3,3,0x1D,right_motor_subs, right_motor_pubs, &nh);
     MotorData left_motor(3,3,0x1B,left_motor_subs, left_motor_pubs, &nh);
-    UltrasonicData right_ultrasonics(6,0,0x1E,right_sensors_pubs,right_sensors_frames,30,2000,&nh);
+    //UltrasonicData right_ultrasonics(6,0,0x1E,right_sensors_pubs,right_sensors_frames,30,2000,&nh);
 
     right_motor.initDevice(bus);
     left_motor.initDevice(bus);
-    right_ultrasonics.initDevice(bus);
+    //right_ultrasonics.initDevice(bus);
 
     while(ros::ok())
     {

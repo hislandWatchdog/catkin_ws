@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+ 
+<launch>
+    <node pkg="jetson_i2c" type="i2c_master_node" name="i2c_master" output="screen"/>
+</launch>

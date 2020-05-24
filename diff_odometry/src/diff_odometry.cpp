@@ -30,9 +30,9 @@ void initializeGlovalVariables() {
     vth = 0.0;   // 0.0 rad/s in theta
 }
 
-void spd_msgCallback_left(const std_msgs::UInt8& msg) {
+void spd_msgCallback_left(const std_msgs::Float64& msg) {
     speed_left = msg;
 }
-void spd_msgCallback_right(const std_msgs::UInt8& msg) {
+void spd_msgCallback_right(const std_msgs::Float64& msg) {
     speed_right = msg;
 }

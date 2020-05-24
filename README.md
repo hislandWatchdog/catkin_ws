@@ -18,6 +18,9 @@ keyboard\_controller: when compiling the opencv might not detect your opencv ins
 			the following command in the CMakeLists.txt file
 			set(OpenCV_DIR /path/to/previous/file)
 
+			if you don't know where it is installed you can try the following:
+			find / -name "OpenCVConfig.cmake"
+
 			Since you will be modifying this file for every user you must untrack
 			the CMakeLists file with the following git command:
 			git update-index --skip-worktree keyboard_controller/CMakeLists.txt
