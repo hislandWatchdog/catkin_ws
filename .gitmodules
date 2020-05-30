@@ -13,3 +13,9 @@
 [submodule "iris_lama_ros"]
 	path = iris_lama_ros
 	url = https://github.com/hislandWatchdog/iris_lama_ros.git
+[submodule "robot_pose_publisher"]
+	path = robot_pose_publisher
+	url = https://github.com/GT-RAIL/robot_pose_publisher.git
+[submodule "navigation"]
+	path = navigation
+	url = https://github.com/hislandWatchdog/navigation.git
