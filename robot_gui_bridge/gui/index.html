@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+
+
+<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.js"></script>
+<script type="text/javascript" src="http://static.robotwebtools.org/EaselJS/current/easeljs.min.js"></script>
+<script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+<script type="text/javascript" src="http://static.robotwebtools.org/ros2djs/current/ros2d.min.js"></script>
+
+<!--script type="text/javascript" src="https://static.robotwebtools.org/nav2djs/current/nav2d.min.js"></script-->
+<script src="scripts/Nav2D.js"></script>
+<script src="scripts/Navigator.js"></script>
+<script src="scripts/OccupancyGridClientNav.js"></script>
+<script src="scripts/ImageMapClientNav.js"></script>
+
+<script type="text/javascript" type="text/javascript">
+
+  var ros = new ROSLIB.Ros({
+    url : 'ws://localhost:9090'
+  });
+
+  /////////////////// Connection
+
+  ros.on('connection', function() {
+    document.getElementById("status").innerHTML = "Connected";
+  });
+
+  ros.on('error', function(error) {
+    document.getElementById("status").innerHTML = "Error";
+  });
+
+  ros.on('close', function() {
+    document.getElementById("status").innerHTML = "Closed";
+  });
+
+
+///////////////////////////Start mapgrid
+function init() {
+    // Connect to ROS.
+    var ros = new ROSLIB.Ros({
+      url : 'ws://localhost:9090'
+    });
+
+    // Create the main viewer.
+    var viewer = new ROS2D.Viewer({
+      divID : 'nav',
+      width : 650,
+      height : 500
+    });
+
+    var nav = NAV2D.OccupancyGridClientNav({
+      ros : ros,
+      rootObject : viewer.scene,
+      viewer : viewer,
+      serverName : '/move_base',
+      withOrientation : true,
+      continuous : true
+    });
+}
+///////////////////////////Listener
+
+    var txt_listener = new ROSLIB.Topic({
+    ros : ros,
+    name : '/txt_msg',
+    messageType : 'std_msgs/String'
+  });
+
+  txt_listener.subscribe(function(m) {
+    document.getElementById("msg").innerHTML = m.data;
+    move(1, 0);
+  });
+
+
+///////////////////////Publisher
+
+  cmd_vel_listener = new ROSLIB.Topic({
+    ros : ros,
+    name : "/cmd_vel",
+    messageType : 'geometry_msgs/Twist'
+  });
+
+  move = function (linear, angular) {
+    var twist = new ROSLIB.Message({
+      linear: {
+        x: linear,
+        y: 0,
+        z: 0
+      },
+      angular: {
+        x: 0,
+        y: 0,
+        z: angular
+      }
+    });
+    cmd_vel_listener.publish(twist);
+  }
+
+////////////////////Start Joystick creation
+
+createJoystick = function () {
+
+    var options = {
+        zone: document.getElementById('zone_joystick'),
+        threshold: 0.1,
+        position: {left: '65%', bottom: '30%'},
+        mode: 'static',
+        size: 150,
+        color: 'orange',
+	restOpacity : 0.9
+    };
+
+    manager = nipplejs.create(options);
+
+    linear_speed = 0;
+    angular_speed = 0;
+
+    self.manager.on('start', function (event, nipple) {
+	timer = setInterval(function () {
+	    move(linear_speed, angular_speed);
+	}, 25);
+    });
+
+    self.manager.on('move', function (event, nipple) {
+	max_linear = 0.25; // m/s
+	max_angular = 2.0; // rad/s
+	max_distance = 50.0; // pixels;
+	linear_speed = Math.sin(nipple.angle.radian) * max_linear * nipple.distance/max_distance;
+	angular_speed = -Math.cos(nipple.angle.radian) * max_angular * nipple.distance/max_distance;
+    });
+
+    self.manager.on('end', function () {
+	if (timer) {
+	    clearInterval(timer);
+	}
+	self.move(0, 0);
+    });
+}
+
+
+////////// Start function
+
+    function test() {
+      createJoystick();
+      init();
+    }
+
+
+
+</script>
+</head>
+
+<style>
+
+table, th, td {
+  border: none;
+}
+table.center {
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+body{
+
+  background-image: url('images/whiteBackground.jpg');
+}
+
+</style>
+
+
+<body onload="test()">
+
+<center>
+
+<div><h1 style="font-size: 40px; font-family: Courier; color: orange; text-align: center; "> Hisland Web Control Center</h1></div>
+
+<div><p style="font-size: 20px; font-family: Courier; color: black; text-align: center; ">Connection status: <span id="status"></span></p></div>
+
+<div><i style="font-size: 15px; font-family: Courier; color: black; text-align: center; "> Instructions: Click and drag on the joystick to move car</i></div>
+
+&emsp;
+
+</center>
+
+<table class="center">
+  
+  <tr>
+      <th>
+        <center>
+           <div id="nav"></div>
+        </center>
+      </th>
+      <th>
+        <center>
+        
+        <iframe id="inlineFrame"
+        title="Inline Frame"
+        width="600"
+        height="500"
+   
+        <source src="http://192.168.40.100:8080/stream_viewer?topic=/image_raw&type=mjpeg&quality=70&width=640&height=480">
+        </iframe>
+
+        </center>
+      </th>
+  </tr>
+
+  <tr>
+    <td>
+      <center>
+      <div><img src="images/hislandlogo.png"></div>
+      </center>
+
+    </td>
+    <td>
+      <div id="zone_joystick"></div>
+    </td>
+
+  </tr>
+</table>
+
+  <center>
+    <div><p style="font-size: 15px; font-family: Courier; color: rgb(88,88,88); text-align: center; "> Regnbågsgatan 8C, 417 55 Göteborg, Suecia </p></div>
+
+      <div><p style="font-size: 15px; font-family: Courier; color: rgb(88,88,88); text-align: center; "> info@hisland.se </p></div>
+
+      <div><p style="font-size: 15px; font-family: Courier; color: rgb(88,88,88); text-align: center; "> Phone: +46 31 20 40 00 </p></div>
+  </center>
+
+</body>
+</html>

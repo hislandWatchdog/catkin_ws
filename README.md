@@ -24,3 +24,11 @@ keyboard\_controller: when compiling the opencv might not detect your opencv ins
 			Since you will be modifying this file for every user you must untrack
 			the CMakeLists file with the following git command:
 			git update-index --skip-worktree keyboard_controller/CMakeLists.txt
+
+navigation: this submodule doesn't have a master branch instead 'git checkout melodic-devel'
+
+robot\_pose\_publisher: this submodule does have a master but default is 'develop'
+
+
+
+
