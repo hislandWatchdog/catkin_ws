@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="platform" default="physical" />
+    <include file="$(find iris_lama_ros)/launch/slam2d_watchdog_$(arg platform).launch" />
+</launch>

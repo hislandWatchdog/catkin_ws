@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="model" />
+  <arg name="gui" default="False" />
+  <arg name="file_name" default="movingRobotInOrlandosRoom2.bag" />
+
+  <param name="robot_description" textfile="$(find simulation_watchdog)/urdf/watchdog.urdf" />
+  <param name="use_gui" value="$(arg gui)" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find simulation_watchdog)/rviz/recording_spawn_model.rviz" />
+  <node pkg="rosbag" type="play" name="player" output="screen" args="-d 5 $(find bag_files)/$(arg file_name)" />
+</launch>
