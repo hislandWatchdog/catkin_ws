@@ -4,7 +4,6 @@
 <meta charset="utf-8" />
 
 
-<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.js"></script>
 <script type="text/javascript" src="http://static.robotwebtools.org/EaselJS/current/easeljs.min.js"></script>
 <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
@@ -12,10 +11,10 @@
 <script type="text/javascript" src="http://static.robotwebtools.org/ros2djs/current/ros2d.min.js"></script>
 
 <!--script type="text/javascript" src="https://static.robotwebtools.org/nav2djs/current/nav2d.min.js"></script-->
-<script src="scripts/Nav2D.js"></script>
-<script src="scripts/Navigator.js"></script>
-<script src="scripts/OccupancyGridClientNav.js"></script>
-<script src="scripts/ImageMapClientNav.js"></script>
+<script src="navigation_scripts/Nav2D.js"></script>
+<script src="navigation_scripts/Navigator.js"></script>
+<script src="navigation_scripts/OccupancyGridClientNav.js"></script>
+<script src="navigation_scripts/ImageMapClientNav.js"></script>
 
 <script type="text/javascript" type="text/javascript">
 
@@ -48,10 +47,10 @@ function init() {
     // Create the main viewer.
     var viewer = new ROS2D.Viewer({
       divID : 'nav',
-      width : 650,
+      width : 500,
       height : 500
     });
-
+    
     var nav = NAV2D.OccupancyGridClientNav({
       ros : ros,
       rootObject : viewer.scene,
@@ -106,7 +105,7 @@ createJoystick = function () {
     var options = {
         zone: document.getElementById('zone_joystick'),
         threshold: 0.1,
-        position: {left: '65%', bottom: '30%'},
+        position: {left: '65%', bottom: '18%'},
         mode: 'static',
         size: 150,
         color: 'orange',

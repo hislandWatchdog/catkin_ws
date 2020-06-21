@@ -3,7 +3,7 @@
 <launch>
   <include
     file="$(find gazebo_ros)/launch/empty_world.launch" >
-    <arg name="world_name" value="$(find simulation_watchdog)/worlds/small_maze.world"/>
+    <arg name="world_name" value="$(find simulation_watchdog)/worlds/big_maze.world"/>
   </include>
   <node
     name="tf_base_footprint_base_link"
